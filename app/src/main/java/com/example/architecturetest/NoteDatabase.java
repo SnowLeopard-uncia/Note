@@ -9,16 +9,25 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.architecturetest.dao.NoteDao;
+import com.example.architecturetest.entity.Note;
+
 @Database(entities = {Note.class},version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
 
     private static NoteDatabase instance;
 
+    //用dao去访问数据库操作方法
     public abstract NoteDao noteDao();
 
-    //只有一个线程？
+    //单例模式创建数据库
+    //单例模式 synchronized每次只允许一个线程来访问这个方法。这样，当两个不同的线程试图同时访问这个方法时，你就不会意外地创建这个数据库的两个实例
+    //synchronized可以避免这个问题
+    //创建了唯一的一个数据库实例，然后我们可以从外部调用这个方法，并获得这个实例
     public static synchronized NoteDatabase getInstance(Context context){
+
         if (instance ==null){
+//            用builder创建不能直接new ，因为这是抽象类
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     NoteDatabase.class,"note_database")
                     .fallbackToDestructiveMigration()

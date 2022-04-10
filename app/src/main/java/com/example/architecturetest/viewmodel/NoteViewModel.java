@@ -1,10 +1,13 @@
-package com.example.architecturetest;
+package com.example.architecturetest.viewmodel;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.architecturetest.repository.NoteRepository;
+import com.example.architecturetest.entity.Note;
 
 import java.util.List;
 
@@ -26,10 +29,10 @@ public class NoteViewModel extends AndroidViewModel {
     public void delete(Note note){
         repository.delete(note);
     }
-    public void deleteAllNotes(Note note){
+    public void deleteAllNotes(){
         repository.deleteAllNotes();
     }
-     LiveData<List<Note>> getAllNotes(){
+     public LiveData<List<Note>> getAllNotes(){
         return allNotes;
     }
 }

@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ArchitectureTest">
-        <activity android:name=".AddNotesActivity"
-            android:parentActivityName=".MainActivity"
+        <activity android:name=".activity.AddNotesActivity"
+            android:parentActivityName=".activity.MainActivity"
             ></activity>
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:launchMode="singleTop"
             >
             <intent-filter>
